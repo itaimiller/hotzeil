@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>חוצה ישראל - הקו שחוצה בין מרכז ופריפריה</title>
+    <style>
+    
+    html, body { height:100%; background-color: #ffffff;}
+    body { margin:0; padding:0; overflow:hidden; }
+
+    #progressBar {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 100px;
+        height: 10px;
+        margin-left: -50px;
+        margin-top: -5px;
+        background: lightgray;
+    }
+    #progressText {
+        width: 100%;
+        height: 100%;
+        text-align: center;
+    }
+    #progressFill {
+        width: 0;
+        height: 10px;
+        background: pink;
+    }
+
+    #flashContent { 
+        display: none;
+        width:100%; 
+        height:100%; 
+    }
+    </style>
+</head>
+<body>
+    <div id="progressBar">
+        <div id="progressText"></div>
+        <div id="progressFill"></div>
+    </div>
+
+    <div id="flashContent">
+      <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="100%" height="100%" id="hotze-israel-nopres24" align="middle">
+        <param name="movie" value="https://dl.dropboxusercontent.com/u/16319836/hotze-israel/hotze-israel-nopres24.swf" />
+        <param name="quality" value="autohigh" />
+        <param name="bgcolor" value="#ffffff" />
+        <param name="play" value="true" />
+        <param name="loop" value="false" />
+        <param name="wmode" value="window" />
+        <param name="scale" value="showall" />
+        <param name="menu" value="true" />
+        <param name="devicefont" value="false" />
+        <param name="salign" value="" />
+        <param name="allowScriptAccess" value="sameDomain" />
+        <!--[if !IE]>-->
+        <object type="application/x-shockwave-flash" data="https://dl.dropboxusercontent.com/u/16319836/hotze-israel/hotze-israel-nopres24.swf" width="100%" height="100%">
+            <param name="movie" value="https://dl.dropboxusercontent.com/u/16319836/hotze-israel/hotze-israel-nopres24.swf" />
+            <param name="quality" value="autohigh" />
+            <param name="bgcolor" value="#ffffff" />
+            <param name="play" value="true" />
+            <param name="loop" value="false" />
+            <param name="wmode" value="window" />
+            <param name="scale" value="showall" />
+            <param name="menu" value="true" />
+            <param name="devicefont" value="false" />
+            <param name="salign" value="" />
+            <param name="allowScriptAccess" value="sameDomain" />
+            <!--<![endif]-->
+            <a href="http://www.adobe.com/go/getflash">
+                <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" />
+            </a>
+        <!--[if !IE]>-->
+        </object>
+        <!--<![endif]-->
+      </object>
+    </div>
+
+
+<script>
+var dom = {
+    content: document.getElementById("flashContent"),
+    progressBar: document.getElementById("progressBar"),
+    progressText: document.getElementById("progressText"),
+    progressFill: document.getElementById("progressFill")
+}
+
+var resource = "https://dl.dropboxusercontent.com/u/16319836/hotze-israel/hotze-israel-nopres24.swf";
+
+var progress = 0,
+    loadingStarted = false;
+
+function pretendLoading(){
+    if (loadingStarted) return;
+
+    setTimeout(pretendLoading, 1000);
+
+    progress += 1;
+    dom.progressFill.style.width = progress + '%';
+    dom.progressText.textContent = progress + '%';
+};
+pretendLoading();
+
+var xhr = new XMLHttpRequest();
+xhr.onprogress = updateProgress;
+xhr.onreadystatechange = updateReadyState;
+
+xhr.open('GET', resource, true);
+xhr.send();
+
+function updateProgress (e) {
+    loadingStarted = true;
+    if (e.lengthComputable){
+        progress = Math.max(Math.round((e.loaded / e.total) * 100), progress);  // never decrease progress
+        dom.progressFill.style.width = progress + '%';
+        dom.progressText.textContent = progress + '%';
+    }
+}
+function updateReadyState(e) {
+    if (xhr.readyState === 4) {
+        dom.content.style.display = "block";
+        dom.progressBar.style.display = "none";
+    }
+};
+</script>
+</body>
+</html>
