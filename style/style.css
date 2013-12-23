@@ -1,0 +1,70 @@
+/* All fonts listed in this notice are subject to the End User License Agreement entered into
+ * by this website's owner. All other parties are explicitly restricted from using the Licensed
+ * Webfonts(s). To obtain a valid license visit: http://alefalefalef.co.il/atlas/
+ *
+ * Webfont Name: אטלס | Weight: 400
+ * Foundry: Alef Alef Alef (c) 2013 אאא
+ * License: http://alefalefalef.co.il/webfonts/
+ * Licensed pageviews limit: 10,000/month
+ */
+ @font-face{
+  font-family:'atlas';
+  font-weight:400;
+  font-style: normal;
+  src: url('fonts/atlas/atlas-aaa-400.eot');
+  src: url('fonts/atlas/atlas-aaa-400.eot?#iefix') format('embedded-opentype'),
+  url('fonts/atlas/atlas-aaa-400.woff') format('woff'),
+  url('fonts/atlas/atlas-aaa-400.ttf') format('truetype');
+}
+
+html, body {
+  height:100%;
+  background-color: #8edde1;
+}
+
+body {
+  font-family: 'atlas', sans-serif;
+  font-weight: 400;
+}
+
+#loadingContainer{
+  width: 150px;
+  position: relative;
+  top: 50%;
+  margin: 0 auto;
+  margin-top: -125px;
+
+}
+#logo {
+  background-image: url(images/logo.png);
+  width: 139px;
+  height: 139px;
+  margin-bottom: 50px;
+}
+#badge {
+  background-image: url(images/badge.png);
+  width: 48px;
+  height: 48px;
+}
+
+#progressBar {
+  background: white;
+  margin-bottom: 15px;
+}
+#progressText {
+  font-size: 16px;
+}
+#progressFill {
+  height: 2px;
+  background: black;
+}
+#loadingMessage{
+  direction: rtl;
+  text-align: center;
+}
+
+#flashContent {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
