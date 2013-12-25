@@ -59,7 +59,7 @@ body {
 @media
 (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     #logo{
-      background-image: url(images/logo@2x.png);
+      background-image: url(images/logo2x.png);
     }
 }
 #badge {
