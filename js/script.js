@@ -1,4 +1,6 @@
 (function() {
+  'use strict';
+
   var RESOURCE = "https://dl.dropboxusercontent.com/u/16319836/" +
     "hotze-israel/hotze-israel-nopres24.swf";
 

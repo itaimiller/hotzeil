@@ -35,16 +35,45 @@ body {
   margin-top: -125px;
 
 }
-#logo {
-  background-image: url(images/logo.png);
+#logoContainer {
+  position: relative;
   width: 139px;
   height: 139px;
   margin-bottom: 50px;
 }
+#logoBg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #16bb6c;
+}
+#logo {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  background: url(images/logo.png) center center no-repeat;
+  background-size: 93px 81px;
+}
+@media
+(-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    #logo{
+      background-image: url(images/logo@2x.png);
+    }
+}
 #badge {
-  background-image: url(images/badge.png);
   width: 48px;
   height: 48px;
+  border-radius: 50%;
+  color: white;
+  background: #af1717;
+  text-align: center;
+  line-height: 46px;
+  transform: rotate(-15deg);
+  -webkit-transform: rotate(-15deg);
+  -moz-transform: rotate(-15deg);
+  -ms-transform: rotate(-15deg);
 }
 
 #progressBar {
@@ -67,4 +96,64 @@ body {
   display: none;
   width: 100%;
   height: 100%;
+}
+
+.pulse {
+  animation-name: pulse;
+  animation-duration: 6s;
+  transform-origin: 50% 50%;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+
+  -moz-animation-name: pulse;
+  -moz-animation-duration: 6s;
+  -moz-transform-origin: 50% 50%;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-timing-function: ease-in-out;
+
+  -webkit-animation-name: pulse;
+  -webkit-animation-duration: 6s;
+  -webkit-transform-origin: 50% 50%;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+   transform: scale(1);
+ }
+  50% {
+   transform: scale(1.05);
+ }
+  100% {
+   transform: scale(1);
+ }
+}
+@-moz-keyframes pulse {
+  0% {
+   -moz-transform: scale(1);
+ }
+  50% {
+   -moz-transform: scale(1.05);
+ }
+  100% {
+   -moz-transform: scale(1);
+ }
+}
+@-webkit-keyframes pulse {
+  0% {
+   transform: scale(1);
+   -moz-transform: scale(1);
+   -webkit-transform: scale(1);
+ }
+  50% {
+   transform: scale(1.05);
+   -moz-transform: scale(1.05);
+   -webkit-transform: scale(1.05);
+ }
+  100% {
+   transform: scale(1);
+   -moz-transform: scale(1);
+   -webkit-transform: scale(1);
+ }
 }
