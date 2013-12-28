@@ -1,8 +1,9 @@
 (function() {
   'use strict';
 
-  var RESOURCE = "https://dl.dropboxusercontent.com/u/16319836/" +
-    "hotze-israel/hotze-israel-nopres24.swf";
+  var RESOURCE = "hotze-israel-nopres24.swf";
+
+  var CLASS_CONTENT_READY = 'content-ready';
 
   var LOADING_MESSAGES = [
     'טוען אתר',
@@ -15,15 +16,17 @@
     'פוגע בהזדמנויות',
   ];
 
-  var dom = {
-    content: document.getElementById("flashContent"),
-    progressBar: document.getElementById("progressBar"),
-    progressText: document.getElementById("progressText"),
-    progressFill: document.getElementById("progressFill"),
-    loadingMessage: document.getElementById("loadingMessage")
-  };
-
   var messageCount = LOADING_MESSAGES.length;
+
+  var dom = {
+    container: document.getElementById('container'),
+    intro: document.getElementById('intro'),
+    content: document.getElementById('content'),
+    progressText: document.getElementById('progressText'),
+    progressFill: document.getElementById('progressFill'),
+    loadingMessage: document.getElementById('loadingMessage'),
+    startButton: document.getElementById('start')
+  };
 
   var Loader = (function() {
     var progress = 0,
@@ -34,11 +37,14 @@
 
       progress += 10;
       if (progress < 100) {
-        setTimeout(mock, 1000);
+        setTimeout(mock, 300);
+      } else {
+        onResourceReady();
+        return;
       }
       dom.progressFill.style.width = progress + '%';
       dom.progressText.textContent = progress + '%';
-      updateLoadingMessage();
+      setLoadingMessage();
     }
 
     function start() {
@@ -57,15 +63,32 @@
         progress = Math.max(Math.round((e.loaded / e.total) * 100), progress);
         dom.progressFill.style.width = progress + '%';
         dom.progressText.textContent = progress + '%';
-        updateLoadingMessage();
+        setLoadingMessage();
       }
     }
 
     function onreadystatechange(e) {
       if (e.target.readyState === 4) {
-        dom.content.style.display = "block";
-        dom.progressBar.style.display = "none";
+        onResourceReady();
       }
+    }
+
+    function onResourceReady() {
+      dom.container.addEventListener('transitionend', function tEnd(e) {
+        e.target.removeEventListener('transitionend', tEnd);
+        dom.intro.style.opacity = 1;
+      });
+
+      document.body.className += (' ' + CLASS_CONTENT_READY);
+
+      dom.startButton.addEventListener('click', function onClick() {
+        dom.container.addEventListener('transitionend', function(e) {
+          e.target.style.display = 'none';
+          dom.content.style.display = 'block';
+        });
+
+        dom.container.style.opacity = 0;
+      });
     }
 
     return {
@@ -79,16 +102,15 @@
   })();
 
 
-  function updateLoadingMessage(index) {
+  function setLoadingMessage(index) {
     if (typeof index === 'undefined') {
       index = Math.round(Loader.getProgress() / (100 / messageCount));
     }
     index = Math.min(index, messageCount - 1);
-    console.log('message index',  index);
     dom.loadingMessage.textContent = LOADING_MESSAGES[index] + '…';
   }
 
-  // Loader.start();
-  updateLoadingMessage(0);
-  Loader.mock();
+  setLoadingMessage(0);
+  // Loader.mock();
+  Loader.start();
 })();

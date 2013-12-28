@@ -23,23 +23,34 @@ html, body {
 }
 
 body {
+  margin: 0;
+  padding: 0;
+
   font-family: 'atlas', sans-serif;
   font-weight: 400;
 }
 
-#loadingContainer{
-  width: 150px;
+#content {
+  display: none;
+}
+
+#container {
   position: relative;
   top: 50%;
   margin: 0 auto;
-  margin-top: -125px;
 
+  margin-top: -112px;
+  opacity: 1;
+
+  transition-property: margin-top, opacity;
+  transition-duration: 0.6s;
 }
+
 #logoContainer {
   position: relative;
   width: 139px;
   height: 139px;
-  margin-bottom: 50px;
+  margin: 0 auto 50px auto;
 }
 #logoBg {
   position: absolute;
@@ -76,6 +87,12 @@ body {
   -ms-transform: rotate(-15deg);
 }
 
+#loadingContainer {
+  width: 150px;
+  position: relative;
+  margin: 0 auto;
+}
+
 #progressBar {
   background: white;
   margin-bottom: 15px;
@@ -92,10 +109,46 @@ body {
   text-align: center;
 }
 
+#intro {
+  text-align: center;
+  direction: rtl;
+  width: 405px;
+  margin: 0 auto;
+
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: 0.6s;
+}
+#intro .text {
+  margin-bottom: 20px;
+}
+#intro #start {
+  width: 98px;
+  height: 38px;
+  background: #16bb6c;
+  color: white;
+  margin: 0 auto;
+  line-height: 37px;
+  border-bottom: 1px solid rgba(0,0,0,0.3);
+  cursor: pointer;
+}
+
 #flashContent {
-  display: none;
   width: 100%;
   height: 100%;
+}
+
+body.content-ready #container {
+  margin-top: -170px;
+}
+body.content-ready #loadingContainer {
+  display: none;
+}
+
+body.content-ready .pulse {
+  animation-name: none;
+  -webkit-animation-name: none;
+  -moz-animation-name: none;
 }
 
 .pulse {
