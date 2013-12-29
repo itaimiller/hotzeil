@@ -40,12 +40,8 @@ body {
   position: relative;
   top: 50%;
   margin: 0 auto;
-
   margin-top: -112px;
   opacity: 1;
-
-  transition-property: margin-top, opacity;
-  transition-duration: 0.6s;
 }
 
 #logoContainer {
@@ -142,6 +138,8 @@ body {
 
 body.content-ready #container {
   margin-top: -170px;
+  transition-property: margin-top, opacity;
+  transition-duration: 0.6s;
 }
 body.content-ready #loadingContainer {
   display: none;
