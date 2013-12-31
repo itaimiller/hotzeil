@@ -48,7 +48,7 @@ body {
   position: relative;
   width: 139px;
   height: 139px;
-  margin: 0 auto 50px auto;
+  margin: 0 auto 40px auto;
 }
 #logoBg {
   position: absolute;
@@ -118,14 +118,14 @@ body {
   transition-duration: 0.6s;
 }
 #intro .text {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 #intro #start {
   width: 98px;
   height: 38px;
   background: #16bb6c;
   color: white;
-  margin: 0 auto;
+  margin: 40 auto;
   line-height: 37px;
   border-bottom: 1px solid rgba(0,0,0,0.3);
   cursor: pointer;
